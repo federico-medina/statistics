@@ -3,9 +3,7 @@
 
 ## Student Info:
 
-First Name: Federico
-Last Name: Medina
-Mail: medina.2061630@studenti.uniroma1.it
+Name: Federico Medina <br />
 ID: 2061630
 
 ## Homeworks Links
