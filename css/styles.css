@@ -1,0 +1,138 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    background-color: #2c2c2c; /* Dark grey background */
+    color: #00ff9d; /* Light text color for readability */
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem 2rem;
+}
+
+
+.home-image{
+    padding: 20px;
+    align-content: right;
+}
+
+.logo {
+    font-size: 35px;
+    font-weight: 700;
+    text-align: left;
+    padding: 20px;
+}
+
+/* Grid Layout for Main Content */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr; /* Left, Center (Main), Right columns */
+    gap: 20px;
+    padding-top: 120px;
+    margin: 0 auto; /* Center the grid layout on the page */
+}
+
+.grid-footer {
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* Left, Center (Main), Right columns */
+    gap: 10px;
+    text-align: left;
+
+    margin: 0 auto; /* Center the grid layout on the page */
+}
+
+/* Left Sidebar */
+.left-footer {
+    text-align: right;
+    font-weight: 700;
+}
+
+
+/* Left Sidebar */
+.righ-footer {
+    text-align: left;
+}
+
+/* Left Sidebar */
+.left-sidebar {
+    padding: 20px;
+    text-align: right;
+}
+
+.left-sidebar ul {
+    list-style-type: none;
+}
+
+.left-sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.left-sidebar ul li a {
+    text-decoration: none;
+    color: #00ff9d;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+/* .left-sidebar ul li a:hover {
+    text-decoration: underline;
+} */
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+}
+
+.main-content h2 {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.main-content p {
+    margin-bottom: 23px;
+}
+
+/* Right Sidebar (Currently empty) */
+.right-sidebar {
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    padding: 16px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr; /* Logo, Title, Navigation */
+    text-align: right;
+    gap: 20px;
+    background-color: #333;
+    margin: 0 auto; /* Center the header content */
+}
+
+.header-main{
+    text-align: right;
+}
