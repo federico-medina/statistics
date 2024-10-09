@@ -9,17 +9,8 @@ body {
     font-family: 'Courier New', monospace;
     line-height: 1.6;
     background-color: #2c2c2c; /* Dark grey background */
-    color: #00ff9d; /* Light text color for readability */
+    color: #f5f5dc; /* Light text color for readability */
     padding: 0;
-}
-
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 1rem 2rem;
 }
 
 
@@ -33,37 +24,18 @@ body {
     font-weight: 700;
     text-align: left;
     padding: 20px;
+    color: #00ff9d;
 }
 
 /* Grid Layout for Main Content */
 .grid-layout {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr; /* Left, Center (Main), Right columns */
+    grid-template-columns: 1fr 4fr 1.5fr; /* Left, Center (Main), Right columns */
     gap: 20px;
     padding-top: 120px;
     margin: 0 auto; /* Center the grid layout on the page */
 }
 
-.grid-footer {
-    display: grid;
-    grid-template-columns: 1fr 4fr; /* Left, Center (Main), Right columns */
-    gap: 10px;
-    text-align: left;
-
-    margin: 0 auto; /* Center the grid layout on the page */
-}
-
-/* Left Sidebar */
-.left-footer {
-    text-align: right;
-    font-weight: 700;
-}
-
-
-/* Left Sidebar */
-.righ-footer {
-    text-align: left;
-}
 
 /* Left Sidebar */
 .left-sidebar {
@@ -96,20 +68,59 @@ body {
 }
 
 .main-content h2 {
+    color: #00ff9d;
     font-weight: 600;
     font-size: 22px;
     margin-bottom: 15px;
 }
 
+.main-content h3 {
+    color: #00ff9d;
+    font-weight: 500;
+    font-size: 22px;
+}
+
 .main-content p {
+    font-size: 20px;
     margin-bottom: 23px;
+}
+
+.main-content ul div {
+    font-size: 20px;
 }
 
 /* Right Sidebar (Currently empty) */
 .right-sidebar {
+    width: 23.5%;
     padding: 20px;
+    position: fixed;
+    top: 120px;
+    right: 0;
+    height: 100%;
 }
 
+.right-sidebar ul li h2{
+    color: #00ff9d;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.right-sidebar ul li h3{
+    color: #00ff9d;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.right-sidebar ul li {
+    color: #00ff9d;
+}
+
+.right-sidebar ul p a {
+    text-decoration: underline;
+    color: #00ff9d;
+    font-weight: 500;
+    font-size: 22px;
+}
 /* Footer */
 footer {
     background-color: #333;
@@ -126,7 +137,7 @@ header {
     top: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr; /* Logo, Title, Navigation */
+    grid-template-columns: 1fr 4fr 1.5fr; /* Logo, Title, Navigation */
     text-align: right;
     gap: 20px;
     background-color: #333;
