@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics for Developers</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
+        <h1 class="logo">Theory Homework 3 </h1>
+    </header>
+
+    <main class="grid-layout">
+        <!-- Left Sidebar with navigation menu -->
+        <nav class="left-sidebar">
+            <ul>
+                <li><a href="../hw3/theoryhw3.html">Theory</a></li>
+                <li><a href="../hw3/practicehw3.html">Practice</a></li>
+            </ul>
+        </nav>
+
+        
+        <!-- Main Content Area -->
+        <section class="main-content">
+            <h2>Why the Median Minimizes the Sum of Absolute Deviations</h2>
+            <p>We aim to explain why the median results in the lowest sum of absolute deviations. In other words, for any given set of numbers, the sum of absolute differences between each number and a chosen value \(c\) is minimized when \(c\) is the median.</p>
+            <p>Key concepts to understand this principle include:</p>
+            <ul>
+                <li><b>Absolute Deviation</b>
+                    <p>The absolute difference between two numbers. For instance, given numbers \({x_1}\) and \(c\), the absolute deviation is \(|{x_1}-c|\).</p>
+                </li>
+                <li><b>Sum of Absolute Deviations</b>
+                    <p>For a dataset \({x_1}, {x_2}, …, {x_n}\), the total absolute deviation from a point \(c\) is calculated as:</p>
+                    \[\sum_{i=1}^{n} |{x_i}-c|\]
+                </li>
+            </ul>
+            <p>Our objective is to determine the value of \(c\) that minimizes this sum, which turns out to be the <b>median</b>.</p>
+            
+            <h3>Example: A Simple Dataset</h3>
+            <p>Consider the following set of numbers:</p>
+            \[\{1,2,3,4,5\}\]
+            <p><b>Step 1: Using the Median</b></p>
+            <p>The median is 3. Calculating the sum of absolute deviations from 3:</p>
+            \[\sum |x_i - 3| = 2 + 1 + 0 + 1 + 2 = 6\]
+            <p><b>Step 2: Using a Different Value (\(c = 2\))</b></p>
+            \[\sum |x_i - 2| = 1 + 0 + 1 + 2 + 3 = 7\]
+            <p>The sum increases to 7.</p>
+            <p><b>Step 3: Using Another Value (\(c = 4\))</b></p>
+            \[\sum |x_i - 4| = 3 + 2 + 1 + 0 + 1 = 7\]
+            <p>Again, the sum is greater than 6.</p>
+            <p><b>Conclusion:</b> The sum of absolute deviations is smallest when \(c\) is the median (\(c = 3\)). Any deviation from this increases the total.</p>
+            
+            <h2>Understanding Why This Works</h2>
+            <p>The median serves as a balancing point, splitting the dataset so that half the values lie below and half above. Moving \(c\) away from the median increases the total distance from the numbers, explaining why the median minimizes absolute deviations.</p>
+            
+            <h3>Another Example</h3>
+            <p>Consider a different dataset: \([1,2,4,6,8]\). The median is 4.</p>
+            <ul>
+                <li>For \(c = 4\): \(\sum |x_i - 4| = 11\)</li>
+                <li>For \(c = 3\): \(\sum |x_i - 3| = 12\)</li>
+                <li>For \(c = 5\): \(\sum |x_i - 5| = 12\)</li>
+            </ul>
+            <p>Again, the median minimizes the sum of absolute deviations.</p>
+            
+            <h2>Conceptual Definitions of "Location" (Central Tendency)</h2>
+            <p>Several methods define a "location" or "center" statistic of a dataset:</p>
+            <ul>
+                <li><b>Mean (Average):</b> The sum of all values divided by the count.</li>
+                <li><b>Median:</b> The middle value when numbers are arranged in order.</li>
+                <li><b>Mode:</b> The most frequently occurring value.</li>
+                <li><b>Midrange:</b> The average of the minimum and maximum values.</li>
+                <li><b>Geometric Mean:</b> The nth root of the product of all values.</li>
+            </ul>
+            
+            <h3>Extensions and Generalizations</h3>
+            <ul>
+                <li><b>Quantiles & Percentiles:</b> Averages of specific percentiles can provide an alternative central measure.</li>
+                <li><b>Barycenter:</b> A weighted mean useful for multi-dimensional data.</li>
+                <li><b>Trimmed Mean:</b> Excludes extreme values before computing the mean.</li>
+                <li><b>Entropy-Based Center:</b> Uses statistical entropy to determine central tendency.</li>
+                <li><b>Cost Function-Based Center:</b> Defines a center that minimizes a chosen cost function.</li>
+            </ul>
+            
+            <p>By altering weighting, distance metrics, or statistical properties, we can derive numerous valid ways to define the center of a dataset, demonstrating the versatility of statistical measures.</p>
+            
+        </section>
+
+        <!-- Right Sidebar (empty for now) -->
+        <section class="right-sidebar">
+
+        </section>
+        
+    </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics for Developers</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
+        <h1 class="logo">Theory Homework 2</h1>
+    </header>
+
+    <main class="grid-layout">
+        <!-- Left Sidebar with navigation menu -->
+        <nav class="left-sidebar">
+            <ul>
+                <li><a href="../hw2/theoryhw2.html">Theory</a></li>
+                <li><a href="../hw2/practicehw2.html">Practice</a></li>
+            </ul>
+        </nav>
+
+        
+        <!-- Main Content Area -->
+        <section class="main-content">
+            <h2 id="chapter1">Welford's Algorithm</h2>
+            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
+            <p>The mean is updated using the following formula:</p>
+            <p>
+                \[
+                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
+                \]
+            </p>
+            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
+            <p>The formula for updating the variance is:</p>
+            <p>
+                \[
+                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
+                \]
+            </p>
+            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
+            <p>The unbiased sample variance is:</p>
+            <p>
+                \[
+                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
+                \]
+            </p>
+        </section>
+
+        <!-- Right Sidebar (empty for now) -->
+        <section class="right-sidebar">
+
+        </section>
+        
+    </main>
+</body>
+</html>
