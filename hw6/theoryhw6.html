@@ -11,43 +11,125 @@
 <body>
     <header>
         <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
-        <h1 class="logo">Theory Homework 2 </h1>
+        <h1 class="logo">Theory Homework 6 </h1>
     </header>
 
     <main class="grid-layout">
         <!-- Left Sidebar with navigation menu -->
         <nav class="left-sidebar">
             <ul>
-                <li><a href="../hw2/theoryhw2.html">Theory</a></li>
-                <li><a href="../hw2/practicehw2.html">Practice</a></li>
+                <li><a href="../hw6/theoryhw6.html">Theory</a></li>
+                <li><a href="../hw6/practicehw6.html">Practice</a></li>
             </ul>
         </nav>
 
         
         <!-- Main Content Area -->
         <section class="main-content">
-            <h2 id="chapter1">Welford's Algorithm</h2>
-            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
-            <p>The mean is updated using the following formula:</p>
+            <h1>The Fundamental Theorem of Calculus (FTC)</h1>
+
             <p>
-                \[
-                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
-                \]
+                The Fundamental Theorem of Calculus (FTC) establishes a fundamental link between differentiation and integration, 
+                providing a method to evaluate definite integrals using antiderivatives. This theorem is particularly important in 
+                probability theory, where it explains the relationship between probability density functions (PDFs) and cumulative 
+                distribution functions (CDFs) for continuous random variables.
             </p>
-            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
-            <p>The formula for updating the variance is:</p>
+
+            <h2>Two Parts of the FTC</h2>
+
+            <ol>
+                <li>
+                    <strong>First Part:</strong> If \( F(x) \) is defined as the integral of a continuous function \( f(t) \) from \( a \) to \( x \):
+                    \[
+                    F(x) = \int_a^x f(t) \, dt,
+                    \]
+                    then \( F(x) \) is differentiable, and its derivative is \( f(x) \):
+                    \[
+                    F'(x) = f(x).
+                    \]
+                </li>
+                <li>
+                    <strong>Second Part:</strong> If \( f(x) \) is continuous on an interval \([a, b]\), then its definite integral can be evaluated as:
+                    \[
+                    \int_a^b f(x) \, dx = F(b) - F(a),
+                    \]
+                    where \( F(x) \) is any antiderivative of \( f(x) \), meaning \( F'(x) = f(x) \).
+                </li>
+            </ol>
+
+            <h2>Application to Probability: PDFs and CDFs</h2>
+
             <p>
-                \[
-                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
-                \]
+                The FTC plays a crucial role in probability theory, particularly in understanding the relationship between PDFs 
+                and CDFs for continuous random variables.
             </p>
-            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
-            <p>The unbiased sample variance is:</p>
+
+            <h2>Definitions</h2>
+
+            <ol>
+                <li>
+                    <strong>Probability Density Function (PDF):</strong>  
+                    The PDF \( f(x) \) represents the likelihood of a continuous random variable \( X \) taking values near \( x \).  
+                    While the PDF itself is not a probability, it describes the rate at which probability accumulates over \( x \).
+                </li>
+                <li>
+                    <strong>Cumulative Distribution Function (CDF):</strong>  
+                    The CDF \( F(x) \) gives the probability that \( X \) is less than or equal to \( x \):
+                    \[
+                    F(x) = \mathbb{P}(X \leq x) = \int_{-\infty}^x f(t) \, dt.
+                    \]
+                </li>
+            </ol>
+
+            <h2>Connecting PDFs and CDFs Using the FTC</h2>
+
+            <ul>
+                <li>
+                    Since \( F(x) \) is defined as the integral of \( f(t) \) from \( -\infty \) to \( x \), it is differentiable if \( f(x) \) is continuous.
+                </li>
+                <li>
+                    By the first part of the FTC, the derivative of \( F(x) \) gives the PDF:
+                    \[
+                    F'(x) = f(x).
+                    \]
+                </li>
+            </ul>
+
             <p>
-                \[
-                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
-                \]
+                This result is fundamental in probability theory, as it shows that the PDF describes the rate at which the cumulative 
+                probability (from \( -\infty \) to \( x \)) increases at each point \( x \).
             </p>
+
+            <h2>Example</h2>
+
+            <p>Consider a continuous random variable \( X \) with the PDF:</p>
+
+            \[
+            f(x) = \frac{1}{2} e^{-\frac{|x|}{2}},
+            \]
+
+            which corresponds to an exponential distribution centered at zero.
+
+            <ol>
+                <li>
+                    The CDF for \( x \geq 0 \) is:
+                    \[
+                    F(x) = \int_{-\infty}^x \frac{1}{2} e^{-\frac{|t|}{2}} \, dt.
+                    \]
+                </li>
+                <li>
+                    Differentiating \( F(x) \) with respect to \( x \) gives back the PDF:
+                    \[
+                    F'(x) = f(x) = \frac{1}{2} e^{-\frac{|x|}{2}}.
+                    \]
+                </li>
+            </ol>
+
+            <p>
+                This example demonstrates how the probability density function describes the rate of change of the cumulative 
+                distribution function, directly linking the two through the Fundamental Theorem of Calculus.
+            </p>
+
         </section>
 
         <!-- Right Sidebar (empty for now) -->

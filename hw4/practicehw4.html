@@ -7,6 +7,7 @@
     <title>Statistics for Developers</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body onload="main()">
     <header>
@@ -74,48 +75,28 @@
         <nav class="left-sidebar">
         </nav>
         <section class="main-content">
-
-            <h1>Code explanation</h1>
-            <h2>Creating Charts</h2>
+            <h1>Code Explanation</h1>
             <p>
-                The addFirstChart() function is responsible for creating the first chart. This chart shows, for each
-                attacker, how many servers he managed to penetrate as he tried.<br />
-                The x-axis represents the number of servers.<br />
-                The y-axis represents the number of successful penetrations.<br />
-                Each line corresponds to an attacker and shows how the number of servers penetrated varies as it
-                progresses.<br /><br />
-                The createSecondChart() function creates the second chart, which shows how many attackers have succeeded
-                in penetrating a certain number of servers.<br />
-                The x-axis represents the number of successful penetrations (how many servers an attacker managed to
-                penetrate).<br />
-                The y-axis represents the number of attackers who reached that number of servers.<br /><br />
-                <img src="">
-                <br /><br />
-            <h2>Data Generation</h2>
-            This function simulates the attack process.<br />
-            For each attacker, an attack against a list of servers is simulated and a calculation is made of how many
-            servers it manages to penetrate.<br />
-            For each server, a random value between 0 and 1 is generated using Math.random(). If this value is less than
-            the probability of success (indicated by the user), the attacker succeeds in penetrating that server.<br />
-            The results are stored in a ‘dataset’, where each attacker has a line tracking how many servers he has
-            penetrated as the attack progresses.<br /><br />
-            <img src="./code-2.png">
-            <br /><br />
-            <h2>Average calculation</h2>
-            This function calculates the average number of servers penetrated by all attackers using recursion.<br />
-            The idea is to gradually add up the values of servers penetrated by each attacker and update the average
-            step by step using the following formula: \[ \mu_n = \mu_{n-1} + \frac{x_n - \mu_{n-1}}{n} \]<br /><br />
-            <img src="./code-3.png">
-            <br /><br />
-            <h2>HTML form management</h2>
-            When the user submits the form, the values entered for the number of servers (integer1), the number of
-            attackers (integer2) and the probability of success (p) are collected.<br />
-            These values are used to generate the attack data and then update the graphs.<br />
-            After the graphs have been created, the value of the average number of servers penetrated by attackers is
-            shown.<br /><br />
-            <img src="./code-4.png">
-            <br /><br />
+                Most of the code remains unchanged from the previous assignments. Below are the key modifications introduced in this homework.
             </p>
+            
+            <h2>Data Generation</h2>
+            <p>
+                As in previous assignments, this function simulates the attack process with a few modifications.<br />
+                For each interval, a random value between 0 and 1 is generated using <code>Math.random()</code>.  
+                If this value is less than the user-defined probability \( p \), the attacker successfully penetrates a server, 
+                increasing their count by \( +\sqrt{dt} \). Otherwise, the attacker fails, decreasing their count by \( -\sqrt{dt} \).  
+                Here, \( dt \) represents the Total Time Window divided by the number of intervals.<br /><br />
+            
+                The results are stored in a dataset, where each attacker’s progress is tracked throughout the simulation.<br />
+                Additionally, the number of successful jumps at each step is recorded in an array for absolute frequency.  
+                To calculate relative frequency, this array is copied, and each element is divided by the total number of attempts 
+                at that step (equivalent to the number of attackers).<br /><br />
+            </p>
+            
+            <img src="images/code1.png">
+            <br /><br />
+            
             
         </section>
     </div>

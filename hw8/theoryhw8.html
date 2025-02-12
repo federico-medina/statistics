@@ -11,43 +11,66 @@
 <body>
     <header>
         <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
-        <h1 class="logo">Theory Homework 2 </h1>
+        <h1 class="logo">Theory Homework 8 </h1>
     </header>
 
     <main class="grid-layout">
         <!-- Left Sidebar with navigation menu -->
         <nav class="left-sidebar">
             <ul>
-                <li><a href="../hw2/theoryhw2.html">Theory</a></li>
-                <li><a href="../hw2/practicehw2.html">Practice</a></li>
+                <li><a href="../hw8/theoryhw8.html">Theory</a></li>
+                <li><a href="../hw8/practicehw8.html">Practice</a></li>
             </ul>
         </nav>
 
         
         <!-- Main Content Area -->
         <section class="main-content">
-            <h2 id="chapter1">Welford's Algorithm</h2>
-            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
-            <p>The mean is updated using the following formula:</p>
+            <h1>Shannon Entropy</h1>
+            <p>
+                Shannon entropy is a fundamental concept in information theory that measures the level of uncertainty or randomness in a probability distribution. 
+                It quantifies the expected amount of information or "surprise" associated with a random variable. The mathematical definition is:
+            </p>
             <p>
                 \[
-                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
+                H(X) = -\sum p(x) \log_b p(x)
                 \]
             </p>
-            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
-            <p>The formula for updating the variance is:</p>
+            <ul>
+                <li><strong>X</strong>: A discrete random variable.</li>
+                <li><strong>p(x)</strong>: The probability of each possible outcome \(x\).</li>
+                <li><strong>b</strong>: The logarithm base, commonly set to 2 for measuring entropy in bits.</li>
+            </ul>
             <p>
-                \[
-                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
-                \]
+                Shannon entropy is widely applied in fields such as machine learning, cryptography, and data compression to assess diversity, randomness, or predictability within a system.
             </p>
-            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
-            <p>The unbiased sample variance is:</p>
+
+            <h2>Alternative Measures of Diversity</h2>
+            <p>In addition to Shannon entropy, several other metrics exist to quantify diversity or distribution spread:</p>
+            <ul>
+                <li><strong>Simpson's Index:</strong> Measures the probability that two randomly chosen elements belong to the same category, emphasizing dominance in a distribution.</li>
+                <li><strong>Gini-Simpson Index:</strong> The complement of Simpson's Index, highlighting diversity rather than concentration.</li>
+                <li><strong>Rényi Entropy:</strong> A generalization of Shannon entropy that introduces a tunable parameter, allowing emphasis on different characteristics of the distribution.</li>
+            </ul>
+
+            <h1>Primitive Root</h1>
             <p>
-                \[
-                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
-                \]
+                A <strong>primitive root</strong> modulo a prime number \(p\) is an integer \(g\) such that every integer \(a\), which is coprime to \(p\), 
+                can be expressed as \(g^k \mod p\) for some integer \(k\).
             </p>
+
+            <h2>Definition</h2>
+            <p>
+                Formally, \(g\) is a primitive root modulo \(p\) if its powers generate all integers from 1 to \(p - 1\) under modulo \(p\). This means:
+            </p>
+            <ul>
+                <li>The smallest positive integer \(k\) for which \(g^k \equiv 1 \mod p\) is exactly \(k = p - 1\).</li>
+                <li>The powers of \(g\) produce distinct values modulo \(p\), ensuring that \(g^i \not\equiv g^j \mod p\) for \(0 \leq i < j \leq p - 1\).</li>
+            </ul>
+            <p>
+                Primitive roots play a crucial role in number theory, particularly in cryptographic algorithms such as Diffie-Hellman key exchange and RSA encryption.
+            </p>
+
         </section>
 
         <!-- Right Sidebar (empty for now) -->

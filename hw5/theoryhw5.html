@@ -11,43 +11,167 @@
 <body>
     <header>
         <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
-        <h1 class="logo">Theory Homework 2 </h1>
+        <h1 class="logo">Theory Homework 5 </h1>
     </header>
 
     <main class="grid-layout">
         <!-- Left Sidebar with navigation menu -->
         <nav class="left-sidebar">
             <ul>
-                <li><a href="../hw2/theoryhw2.html">Theory</a></li>
-                <li><a href="../hw2/practicehw2.html">Practice</a></li>
+                <li><a href="../hw5/theoryhw5.html">Theory</a></li>
+                <li><a href="../hw5/practicehw5.html">Practice</a></li>
             </ul>
         </nav>
 
         
         <!-- Main Content Area -->
         <section class="main-content">
-            <h2 id="chapter1">Welford's Algorithm</h2>
-            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
-            <p>The mean is updated using the following formula:</p>
+            <h2>Cauchy-Schwarz Inequality</h2>
+
             <p>
+                Consider the function:
                 \[
-                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
+                p(t) = \|t \vec{y} - \vec{x}\|^2
                 \]
             </p>
-            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
-            <p>The formula for updating the variance is:</p>
+
             <p>
+                Since it represents a squared norm, it must be non-negative:
                 \[
-                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
+                p(t) = \|t \vec{y} - \vec{x}\|^2 \geq 0
                 \]
             </p>
-            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
-            <p>The unbiased sample variance is:</p>
+
             <p>
+                Expanding using the dot product:
                 \[
-                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
+                p(t) = (t \vec{y} - \vec{x}) \cdot (t \vec{y} - \vec{x}) \geq 0
+                \]
+                \[
+                p(t) = t^2 (\vec{y} \cdot \vec{y}) - 2t (\vec{x} \cdot \vec{y}) + (\vec{x} \cdot \vec{x}) \geq 0
                 \]
             </p>
+
+            <p>
+                Defining coefficients for simplicity:
+                \[
+                p(t) = at^2 + bt + c \geq 0
+                \]
+                where:
+                \[
+                a = (\vec{y} \cdot \vec{y}), \quad b = -2 (\vec{x} \cdot \vec{y}), \quad c = (\vec{x} \cdot \vec{x})
+                \]
+            </p>
+
+            <p>
+                The minimum of this quadratic function occurs at:
+                \[
+                t = -\frac{b}{2a}
+                \]
+            </p>
+
+            <p>
+                Substituting \( t \) back into \( p(t) \):
+                \[
+                p\left(-\frac{b}{2a}\right) = \frac{b^2}{4a} - \frac{b^2}{2a} + c \geq 0
+                \]
+            </p>
+
+            <p>
+                Simplifying:
+                \[
+                4ac \geq b^2
+                \]
+            </p>
+
+            <p>
+                Rewriting in terms of the original dot products:
+                \[
+                4 (\vec{y} \cdot \vec{y}) (\vec{x} \cdot \vec{x}) \geq (2 \vec{x} \cdot \vec{y})^2
+                \]
+            </p>
+
+            <p>
+                Using the identity \( \vec{v} \cdot \vec{v} = \|\vec{v}\|^2 \):
+                \[
+                4 \|\vec{y}\|^2 \|\vec{x}\|^2 \geq (|-2 \vec{x} \cdot \vec{y}|)^2
+                \]
+            </p>
+
+            <p>
+                Taking the square root on both sides:
+                \[
+                2 \|\vec{y}\| \|\vec{x}\| \geq 2 |\vec{x} \cdot \vec{y}|
+                \]
+            </p>
+
+            <p>
+                Simplifying:
+                \[
+                \|\vec{y}\| \|\vec{x}\| \geq |\vec{x} \cdot \vec{y}|
+                \]
+            </p>
+
+            <p>
+                This proves the Cauchy-Schwarz inequality.
+            </p>
+
+            <h2>Independence vs. Uncorrelation</h2>
+
+            <p>
+                Independence and uncorrelation are distinct concepts in probability and statistics.
+            </p>
+
+            <ol>
+                <li>
+                    <b>Independence:</b> Two random variables \( X \) and \( Y \) are independent if:
+                    \[
+                    P(X \cap Y) = P(X) P(Y)
+                    \]
+                    This means knowing one does not affect the probability distribution of the other.
+                </li>
+                <li>
+                    <b>Uncorrelation:</b> Two variables \( X \) and \( Y \) are uncorrelated if their covariance is zero:
+                    \[
+                    \operatorname{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = 0
+                    \]
+                    This implies no linear relationship but does not rule out nonlinear dependence.
+                </li>
+            </ol>
+
+            <h3>Key Differences</h3>
+
+            <ul>
+                <li>
+                    <b>Scope:</b> Independence ensures no dependency at all, while uncorrelation only eliminates linear dependence.
+                </li>
+                <li>
+                    <b>Implications:</b> Independence implies uncorrelation, but the reverse is not necessarily true. For example,
+                    if \( Y = X^2 \), then \( X \) and \( Y \) can be uncorrelated but dependent.
+                </li>
+            </ul>
+
+            <h3>Measuring Dependence</h3>
+
+            <ul>
+                <li>
+                    <b>Correlation Coefficient:</b> The correlation coefficient:
+                    \[
+                    \rho_{X,Y} = \frac{\operatorname{Cov}(X, Y)}{\sigma_X \sigma_Y}
+                    \]
+                    measures linear dependence, but a zero value does not imply independence.
+                </li>
+                <li>
+                    <b>Mutual Information:</b> Unlike correlation, mutual information captures all forms of dependence. If mutual
+                    information is zero, the variables are truly independent.
+                </li>
+            </ul>
+
+            <p>
+                In summary, while uncorrelation implies no linear dependence, independence is a stronger condition requiring that
+                the variables have no dependency at all.
+            </p>
+
         </section>
 
         <!-- Right Sidebar (empty for now) -->

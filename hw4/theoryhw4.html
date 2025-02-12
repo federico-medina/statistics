@@ -11,43 +11,85 @@
 <body>
     <header>
         <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
-        <h1 class="logo">Theory Homework 2 </h1>
+        <h1 class="logo">Theory Homework 4 </h1>
     </header>
 
     <main class="grid-layout">
         <!-- Left Sidebar with navigation menu -->
         <nav class="left-sidebar">
             <ul>
-                <li><a href="../hw2/theoryhw2.html">Theory</a></li>
-                <li><a href="../hw2/practicehw2.html">Practice</a></li>
+                <li><a href="../hw4/theoryhw4.html">Theory</a></li>
+                <li><a href="../hw4/practicehw4.html">Practice</a></li>
             </ul>
         </nav>
 
         
         <!-- Main Content Area -->
         <section class="main-content">
-            <h2 id="chapter1">Welford's Algorithm</h2>
-            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
-            <p>The mean is updated using the following formula:</p>
-            <p>
-                \[
-                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
-                \]
-            </p>
-            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
-            <p>The formula for updating the variance is:</p>
-            <p>
-                \[
-                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
-                \]
-            </p>
-            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
-            <p>The unbiased sample variance is:</p>
-            <p>
-                \[
-                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
-                \]
-            </p>
+            <h1>Statistical Independence</h1>
+            Statistical independence is a key concept in probability and statistics, describing a situation where two events (or variables) do not influence each other. If one event occurs, it does not affect the likelihood of the other occurring.</br></br>
+            
+            <h2>Definition of Statistical Independence</h2>
+            
+            Two events, \(A\) and \(B\), are considered independent if the occurrence of one has no impact on the occurrence of the other. This relationship can be expressed mathematically using probabilities. Specifically, \(A\) and \(B\) are independent if and only if:
+            
+            \[
+            P(A \cap B) = P(A) \cdot P(B)
+            \]
+            
+            where:</br></br>
+            
+
+                \(P(A \cap B)\) represents the probability that both events \(A\) and \(B\) occur together.
+                \(P(A)\) and \(P(B)\) denote the individual probabilities of events \(A\) and \(B\).
+
+            
+            <h2>Understanding the Formula</h2>
+            
+            The equation \(P(A \cap B) = P(A) \cdot P(B)\) signifies that if \(A\) and \(B\) are independent, their combined probability is simply the product of their separate probabilities. This implies that knowing one event has occurred does not influence the likelihood of the other occurring.
+            
+            For example:</br></br>
+            
+            
+            Consider flipping two different coins. Let \(A\) be the event where "the first coin lands on heads" and \(B\) be "the second coin lands on heads".</br>
+            The probability of event \(A\) occurring (the first coin landing on heads) is \(P(A) = 0.5\).</br>
+            Similarly, the probability of event \(B\) occurring (the second coin landing on heads) is \(P(B) = 0.5\).</br>
+
+            
+            If the two coin flips are independent, the probability that both coins land on heads (event \(A \cap B\)) is:
+            
+            \[
+            P(A \cap B) = P(A) \cdot P(B) = 0.5 \times 0.5 = 0.25
+            \]
+            
+            This means that in 25% of trials, both coins will land on heads, confirming that the outcome of one coin does not affect the outcome of the other.</br></br>
+            
+            <h2>Independence and Conditional Probability</h2>
+            
+            Statistical independence can also be described using conditional probability. The conditional probability of \(A\) given that \(B\) has occurred, written as \(P(A | B)\), represents the likelihood of \(A\) occurring under the condition that \(B\) has already happened. If \(A\) and \(B\) are independent, then:
+            
+            \[
+            P(A | B) = P(A)
+            \]
+            
+            This means that the occurrence of \(B\) does not alter the probability of \(A\), further reinforcing their independence.</br></br>
+            
+            <h2>Comparison with Dependent Events</h2>
+            
+            On the other hand, dependent events influence each other. If two events, \(C\) and \(D\), are dependent, their joint probability does not equal the product of their individual probabilities, i.e.,
+            
+            \[
+            P(C \cap D) \neq P(C) \cdot P(D)
+            \]
+            
+            Additionally, their conditional probability also changes:
+            
+            \[
+            P(C | D) \neq P(C)
+            \]
+            
+            This indicates that knowing \(D\) has occurred affects the probability of \(C\), demonstrating their dependence.</br></br>
+            
         </section>
 
         <!-- Right Sidebar (empty for now) -->

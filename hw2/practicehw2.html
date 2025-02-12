@@ -7,6 +7,7 @@
     <title>Statistics for Developers</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body onload="main()">
     <header>
@@ -78,51 +79,57 @@
         <nav class="left-sidebar">
         </nav>
         <section class="main-content">
-            <!-- <u><b>
-                <p id="result" style="text-align: center; font-size: 20px;"></p>
-            </b></u> -->
+            <h1>Code Explanation</h1>
 
-            <h1>Code explanation</h1>
             <h2>Creating Charts</h2>
             <p>
-                The addFirstChart() function is responsible for creating the first chart. This chart shows, for each
-                attacker, how many servers he managed to penetrate as he tried.<br />
-                The x-axis represents the number of servers.<br />
-                The y-axis represents the number of successful penetrations.<br />
-                Each line corresponds to an attacker and shows how the number of servers penetrated varies as it
-                progresses.<br /><br />
-                The createSecondChart() function creates the second chart, which shows how many attackers have succeeded
-                in penetrating a certain number of servers.<br />
-                The x-axis represents the number of successful penetrations (how many servers an attacker managed to
-                penetrate).<br />
-                The y-axis represents the number of attackers who reached that number of servers.<br /><br />
-                <img src="">
-                <br /><br />
-            <h2>Data Generation</h2>
-            This function simulates the attack process.<br />
-            For each attacker, an attack against a list of servers is simulated and a calculation is made of how many
-            servers it manages to penetrate.<br />
-            For each server, a random value between 0 and 1 is generated using Math.random(). If this value is less than
-            the probability of success (indicated by the user), the attacker succeeds in penetrating that server.<br />
-            The results are stored in a ‘dataset’, where each attacker has a line tracking how many servers he has
-            penetrated as the attack progresses.<br /><br />
-            <img src="./code-2.png">
-            <br /><br />
-            <h2>Average calculation</h2>
-            This function calculates the average number of servers penetrated by all attackers using recursion.<br />
-            The idea is to gradually add up the values of servers penetrated by each attacker and update the average
-            step by step using the following formula: \[ \mu_n = \mu_{n-1} + \frac{x_n - \mu_{n-1}}{n} \]<br /><br />
-            <img src="./code-3.png">
-            <br /><br />
-            <h2>HTML form management</h2>
-            When the user submits the form, the values entered for the number of servers (integer1), the number of
-            attackers (integer2) and the probability of success (p) are collected.<br />
-            These values are used to generate the attack data and then update the graphs.<br />
-            After the graphs have been created, the value of the average number of servers penetrated by attackers is
-            shown.<br /><br />
-            <img src="./code-4.png">
-            <br /><br />
+                In the first homework, the <code>addFirstChart()</code> function generates the first chart, while 
+                <code>addSecondChart()</code> handles the second one.<br /><br />
+                In this homework, a new function, <code>addThirdChart()</code>, is introduced to illustrate how many attackers 
+                successfully penetrate a certain number of servers at an intermediate step.<br /><br />
+                Additionally, <code>addFourthChart()</code> is implemented to represent both Absolute and Relative Frequency. 
+                The x-axis denotes the number of servers, while the y-axis shows:
             </p>
+            <ul>
+                <li>The number of successful penetrations at each step for Absolute Frequency.</li>
+                <li>The ratio of successful penetrations to total attempts in each step for Relative Frequency.</li>
+            </ul>
+            <img src="images/code1.png">
+            
+            <h2>Data Generation</h2>
+            <p>
+                This function simulates the attack process with minor modifications from the first homework.<br /><br />
+                Each attacker's attempt to penetrate a list of servers is simulated, and the number of successful penetrations is 
+                calculated. For each server, a random number between 0 and 1 is generated using <code>Math.random()</code>. If this 
+                value is below the user-defined probability of success, the attacker successfully penetrates the server (+1). 
+                Otherwise, the attempt fails (-1).<br /><br />
+                The results are stored in a dataset, where each attacker's progress is tracked. Additionally:
+            </p>
+            <ul>
+                <li>The number of successful jumps per step is stored for Absolute Frequency.</li>
+                <li>For Relative Frequency, this array is duplicated, with each value divided by the total number of attackers.</li>
+            </ul>
+            <img src="images/code2.png">
+            
+            <h2>Mean and Variance Calculation</h2>
+            <p>
+                Similar to the first homework, this function recursively computes the average number of servers penetrated by all 
+                attackers. The step-by-step update follows the formula:<br /><br />
+                \[ \mu_n = \mu_{n-1} + \frac{x_n - \mu_{n-1}}{n} \]
+            </p>
+            <p>
+                In this homework, the function has been extended to calculate variance using the formula:<br /><br />
+                \[ M_n = M_{n-1} + (x_n - \mu_n)(x_n - \mu_{n-1}) \]
+            </p>
+            <img src="images/code3.png">
+            
+            <h2>Distribution Calculation</h2>
+            <p>
+                This function determines how many attackers successfully penetrate a specific number of servers at an intermediate 
+                step. It also tracks the number of successful and failed penetration attempts per attacker, which is then used to 
+                compute mean and variance.
+            </p>
+            <img src="images/code4.png">
             
         </section>
     </div>
