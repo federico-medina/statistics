@@ -172,8 +172,8 @@
             const sampleSize = parseInt(document.getElementById('sampleSize').value, 10);
 
             const valueMapping = probabilities.map((_, i) => i + 1); // Assign numbers to values
-            const meanValues = []; // Store mean for each iteration
-
+            const variances = []; // Store mean for each iteration
+            const corrected = true;
             // Generate samples and calculate stats
             for (let i = 0; i < numIterations; i++) {
                 const sample = [];
@@ -189,26 +189,27 @@
                     }
                 }
 
-                const sampleMean = sample.reduce((acc, val) => acc + val, 0) / sampleSize; // Mean of the sample
-                meanValues.push(sampleMean);
+				const sampleMean = sample.reduce((acc, val) => acc + val, 0) / sampleSize;
+
+                // Calculate variance (corrected or uncorrected)
+                 // Toggle for corrected or uncorrected variance
+                const variance = sample.reduce((acc, val) => acc + Math.pow(val - sampleMean, 2), 0) /
+                    (corrected ? (sampleSize - 1) : sampleSize);
+
+                variances.push(variance);
+
             }
 
-            // Calculate overall mean and variance of sample means
-            const overallMean = meanValues.reduce((acc, val) => acc + val, 0) / numIterations;
-            const variance =
-                meanValues.reduce((acc, val) => acc + Math.pow(val - overallMean, 2), 0) / numIterations;
+            const overallMean = variances.reduce((acc, val) => acc + val, 0) / numIterations;
+			const varianceOfVariances = variances.reduce((acc, val) => acc + Math.pow(val - overallMean, 2), 0) / numIterations;
 
-            // Generate the first graph (line graph of means)
-            drawLineGraph(meanValues);
-
-            // Generate the second graph (frequency distribution of rounded means)
-            drawFrequencyGraph(meanValues);
-
-            // Display overall results below the second chart
-            displayOverallResults(overallMean, variance);
+			// Generate graphs and display results
+			drawLineGraph(variances);
+			drawFrequencyGraph(variances);
+			displayOverallResults(overallMean, varianceOfVariances, corrected);
         }
 
-        function drawLineGraph(meanValues) {
+        function drawLineGraph(variances) {
             document.getElementById('meanVarianceChart').style.display = 'block';
             const ctx = document.getElementById('meanVarianceChart').getContext('2d');
 
@@ -219,11 +220,11 @@
             window.meanVarianceChartInstance = new Chart(ctx, {
                 type: 'line', // Line graph
                 data: {
-                    labels: Array.from({ length: meanValues.length }, (_, i) => i + 1), // X-axis: iteration index
+                    labels: Array.from({ length: variances.length }, (_, i) => i + 1), // X-axis: iteration index
                     datasets: [
                         {
-                            label: 'Mean Values',
-                            data: meanValues, // Y-axis: mean values
+                            label: 'Variance Values',
+                            data: variances, // Y-axis: mean values
                             borderColor: getRandomColor(),
                             backgroundColor: getRandomColor(),
                             borderWidth: 2,
@@ -249,7 +250,7 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Mean Value',
+                                text: 'Variance Value',
                             },
                         },
                     },
@@ -257,9 +258,9 @@
             });
         }
 
-        function drawFrequencyGraph(meanValues) {
+        function drawFrequencyGraph(variances) {
             // Round the values to 2 decimal places and calculate frequencies
-            const roundedMeans = meanValues.map(val => parseFloat(val.toFixed(2)));
+            const roundedMeans = variances.map(val => parseFloat(val.toFixed(2)));
             const frequencyMap = {};
 
             roundedMeans.forEach(mean => {

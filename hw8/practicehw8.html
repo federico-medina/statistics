@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body onload="generateRandomText(); main()">
     <header>
         <div class="home-image"><a href="../index.html"><img src="../images/chart.png" width="45" height="45" alt="Home"></a></div>
         <h1 class="logo">Practice Homework 8 </h1>
@@ -44,7 +44,6 @@
             <input type="number" id="nvalue" min="1" max="50" value="10">
             <label for="pvalue">Enter P: </label>
             <input type="number" id="pvalue" min="1" max="50" value="37">
-            <button id="encodeText" class="my-button">Encode</button>
             <p id="numericEncodingOutput"></p>
             <canvas id="numericChart"></canvas>
           
@@ -55,8 +54,24 @@
     </main>
     <script>
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
-    
-        // Utility: Count letter frequencies
+
+        let firstChart = null;
+        let secondChart = null;
+
+        function generateRandomText(length = 10) {
+          const characters = "abcdefghijklmnopqrstuvwxyz";
+          
+          let result = "";
+          
+          for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+          }
+
+          document.getElementById("inputText").value = result.trim(); 
+        }
+
+        
+        
         function countFrequencies(text) {
           const frequencies = {};
           for (let char of text.toLowerCase()) {
@@ -67,7 +82,7 @@
           return frequencies;
         }
     
-        // Utility: Caesar cipher encryption
+        
         function caesarCipher(text, shift) {
           return text
             .split("")
@@ -79,119 +94,134 @@
                 const shiftedChar = alphabet[shiftedIndex];
                 return isUpperCase ? shiftedChar.toUpperCase() : shiftedChar;
               }
-              return char; // Non-alphabetical characters remain unchanged
+              return char; 
             })
             .join("");
         }
     
-        // Utility: Frequency analysis decryption
+        
         function decryptUsingFrequencyAnalysis(encryptedText) {
           const encryptedFrequencies = countFrequencies(encryptedText);
           const sortedEncrypted = Object.entries(encryptedFrequencies).sort((a, b) => b[1] - a[1]);
-          const englishFreqOrder = "etaoinshrdlcumwfgypbvkjxqz"; // Approximate English frequency order
+          const englishFreqOrder = "etaoinshrdlcumwfgypbvkjxqz"; 
           const potentialShift = alphabet.indexOf(sortedEncrypted[0][0]) - alphabet.indexOf(englishFreqOrder[0]);
           return caesarCipher(encryptedText, (alphabet.length - potentialShift) % alphabet.length);
         }
     
-        // Part 2: Numeric encoding
+        
         function numericEncoding(text, n, p) {
           return text
             .toLowerCase()
             .split("")
             .map((char) => {
               if (alphabet.includes(char)) {
-                const k = alphabet.indexOf(char); // Numeric representation (A=0, ..., Z=25)
-                return Math.pow(n, k) % p; // N^k mod P
+                const k = alphabet.indexOf(char); 
+                return Math.pow(n, k) % p; 
               }
-              return null; // Non-alphabetical characters are ignored in encoding
+              return null; 
             })
-            .filter((val) => val !== null); // Remove nulls
+            .filter((val) => val !== null); 
+        }
+
+        function colorrand() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
     
-        // Calculate Shannon entropy
+        
         function calculateEntropy(distribution) {
           const total = distribution.reduce((sum, count) => sum + count, 0);
           return -distribution
-            .filter((count) => count > 0) // Exclude zeros
-            .map((count) => count / total) // Convert counts to probabilities
-            .reduce((entropy, prob) => entropy + prob * Math.log2(prob), 0); // Shannon entropy formula
+            .filter((count) => count > 0) 
+            .map((count) => count / total) 
+            .reduce((entropy, prob) => entropy + prob * Math.log2(prob), 0); 
         }
     
-        // Generate Chart.js chart
+        
         function generateChart(canvasId, labels, data, chartTitle) {
+          if (canvasId == "frequencyChart"){
+            if (firstChart !== null) {
+              firstChart.destroy();
+            }
+          } else if (canvasId == "numericChart") {
+            if (secondChart !== null) {
+              secondChart.destroy();
+            }
+          }
           const ctx = document.getElementById(canvasId).getContext("2d");
-          new Chart(ctx, {
-            type: "bar",
-            data: {
-              labels: labels,
-              datasets: [{
-                label: chartTitle,
-                data: data,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
+          if (canvasId == "frequencyChart"){
+            firstChart = new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: chartTitle,
+                  data: data,
+                  backgroundColor: colorrand(),
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
                 }
               }
-            }
-          });
+            });
+          } else if (canvasId == "numericChart") {
+            secondChart = new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: chartTitle,
+                  data: data,
+                  backgroundColor: colorrand(),
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          }
         }
     
-        // Main event listener
+        
         document.getElementById("generateChart").addEventListener("click", () => {main()});
-        document.getElementById("encodeText").addEventListener("click", () => {
-            const encodedValues = numericEncoding(document.getElementById("inputText").value, document.getElementById("nvalue").value, document.getElementById("pvalue").value);
-            document.getElementById("numericEncodingOutput").innerHTML = `
-                <strong>Encoded Values:</strong> ${encodedValues.join(", ")}
-            `;
-        
-            // Step 5: Numeric encoding distribution
-            const encodingFrequencies = encodedValues.reduce((acc, val) => {
-                acc[val] = (acc[val] || 0) + 1;
-                return acc;
-            }, {});
-            const encodingLabels = Object.keys(encodingFrequencies).map(Number).sort((a, b) => a - b);
-            const encodingData = encodingLabels.map((val) => encodingFrequencies[val]);
-            if (numericChart !== null) {
-                numericChart.destroy();
-            }
-            generateChart("numericChart", encodingLabels, encodingData, "Numeric Encoding Distribution");
-        
-            // Step 6: Shannon entropy
-            const entropy = calculateEntropy(encodingData);
-            document.getElementById("entropyOutput").innerHTML = `
-                <strong>Shannon Entropy:</strong> ${entropy.toFixed(4)}
-            `;
-        });
 
         function main(){
             const inputText = document.getElementById("inputText").value;
     
-            // Step 1: Letter frequency distribution
+            
             const frequencies = countFrequencies(inputText);
             const frequencyLabels = Object.keys(frequencies).sort();
             const frequencyData = frequencyLabels.map((letter) => frequencies[letter]);
             generateChart("frequencyChart", frequencyLabels, frequencyData, "Letter Frequency");
         
-            // Step 2: Caesar cipher encryption
+            
             const randomShift = Math.floor(Math.random() * 25) + 1;
             const encryptedText = caesarCipher(inputText, randomShift);
             document.getElementById("encryptionOutput").innerHTML = `
                 <strong>Encrypted Text (Shift: ${randomShift}):</strong> ${encryptedText}
             `;
         
-            // Step 3: Frequency analysis decryption
+            
             const decryptedText = decryptUsingFrequencyAnalysis(encryptedText);
             document.getElementById("decryptionOutput").innerHTML = `
                 <strong>Decrypted Text:</strong> ${decryptedText}
             `;
         
-            // Step 4: Numeric encoding
+            
             const n = parseInt(document.getElementById('nvalue').value);
             const p = parseInt(document.getElementById('pvalue').value);;
             const encodedValues = numericEncoding(inputText, n, p);
@@ -199,7 +229,7 @@
                 <strong>Encoded Values:</strong> ${encodedValues.join(", ")}
             `;
         
-            // Step 5: Numeric encoding distribution
+            
             const encodingFrequencies = encodedValues.reduce((acc, val) => {
                 acc[val] = (acc[val] || 0) + 1;
                 return acc;
@@ -208,7 +238,7 @@
             const encodingData = encodingLabels.map((val) => encodingFrequencies[val]);
             generateChart("numericChart", encodingLabels, encodingData, "Numeric Encoding Distribution");
         
-            // Step 6: Shannon entropy
+            
             const entropy = calculateEntropy(encodingData);
             document.getElementById("entropyOutput").innerHTML = `
                 <strong>Shannon Entropy:</strong> ${entropy.toFixed(4)}

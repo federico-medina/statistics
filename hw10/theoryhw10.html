@@ -26,28 +26,100 @@
         
         <!-- Main Content Area -->
         <section class="main-content">
-            <h2 id="chapter1">Welford's Algorithm</h2>
-            <p>Welford's algorithm is an efficient method for computing the mean and variance of a dataset in a single pass. Unlike the naive method, it avoids numerical instability caused by subtracting large numbers, making it well-suited for streaming data or cases where the dataset is processed incrementally.</p>
-            <p>The mean is updated using the following formula:</p>
+            <h1>Fundamental Concepts</h1>
+
+            <h2>Sample Mean and Variance</h2>
+            <p>
+                The sample mean and variance are fundamental statistical measures used to summarize data and make inferences about a population. 
+                The sample mean, denoted \( \bar{X} \), is computed as:
+            </p>
             <p>
                 \[
-                m_t = m_{t-1} + \frac{x_t - m_{t-1}}{t}
+                \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
                 \]
             </p>
-            <p>where \(m_{t-1}\) is the mean calculated from the previous \(t-1\) data points, when a new data point, \(x_t\), arrives at time \(t\).</p>
-            <p>The formula for updating the variance is:</p>
+            <p>
+                In this equation, \( X_i \) represents each individual observation in the sample, and \( n \) is the total number of observations. 
+                The sample mean provides an estimate of the population mean, \( \mu \), and serves as a central measure of data distribution.
+            </p>
+
+            <p>
+                Similarly, the sample variance, denoted \( S^2 \), quantifies the dispersion of data around the mean. It is calculated using:
+            </p>
             <p>
                 \[
-                s_t^2 = s_{t-1}^2 + (x_t - m_{t-1})(x_t - m_t)
+                S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
                 \]
             </p>
-            <p>where \(s_{t-1}^2\) is the variance from the previous data points.</p>
-            <p>The unbiased sample variance is:</p>
+            <p>
+                This formula ensures that \( S^2 \) serves as an unbiased estimator of the population variance \( \sigma^2 \). 
+                As the sample size increases, the sample variance provides a more accurate representation of the true population variance.
+            </p>
+
+            <h3>Key Properties of Their Distributions</h3>
+            <p>
+                One of the essential characteristics of the sample mean is that its expected value equals the population mean, expressed as \( E[\bar{X}] = \mu \). 
+                Additionally, the variance of the sample mean decreases with increasing sample size, following the relationship:
+            </p>
             <p>
                 \[
-                \hat{\sigma}^2 = \frac{s_t^2}{t-1}
+                \text{Var}(\bar{X}) = \frac{\sigma^2}{n}
                 \]
             </p>
+            <p>
+                This reduction in variance indicates that larger samples yield more precise estimates of the population mean. 
+                Moreover, according to the Central Limit Theorem, for sufficiently large samples, the distribution of the sample mean approximates a normal distribution, regardless of the population’s underlying distribution. 
+                This property is fundamental to many statistical inference techniques.
+            </p>
+
+            <p>
+                The sample variance \( S^2 \) is also a random variable that converges to the true population variance as the sample size grows. 
+                It provides crucial insights into the spread and variability of the sample data, complementing the information obtained from the sample mean.
+            </p>
+
+            <h2>Lebesgue–Stieltjes Integration</h2>
+            <p>
+                Lebesgue–Stieltjes integration extends the concept of Riemann integration by allowing integration with respect to a function rather than a single variable. 
+                This approach is particularly valuable in probability and measure theory, as it enables the integration of both continuous and discontinuous functions while accommodating mixed discrete-continuous distributions.
+            </p>
+
+            <p>
+                Formally, the Lebesgue–Stieltjes integral of a function \( f \) with respect to a function \( g \) over an interval \([a, b]\) is defined as:
+            </p>
+            <p>
+                \[
+                \int_a^b f(x) \, dg(x)
+                \]
+            </p>
+            <p>
+                Here, \( g \) is a monotonic function that induces a measure, allowing integration to incorporate various types of probability distributions.
+            </p>
+
+            <h3>Applications in Probability Theory</h3>
+            <p>
+                In probability theory, the Lebesgue–Stieltjes integral provides a unified framework for defining expectations and computing probabilities. 
+                For example, the expected value of a random variable \( X \) with a cumulative distribution function (CDF) \( F(x) \) is given by:
+            </p>
+            <p>
+                \[
+                E[X] = \int_{-\infty}^\infty x \, dF(x)
+                \]
+            </p>
+            <p>
+                This formulation seamlessly integrates both discrete and continuous random variables. Additionally, probabilities of events can be calculated using this integral, making it a fundamental tool in stochastic modeling and probability analysis.
+            </p>
+
+            <h3>Applications in Measure Theory</h3>
+            <p>
+                In measure theory, Lebesgue–Stieltjes integration establishes a formal link between integration and measures, providing a rigorous foundation for advanced mathematical analysis. 
+                It extends integration to functions that may be difficult to handle using Riemann integration, such as those defined over irregular domains or containing discontinuities. 
+                This framework is essential for defining and analyzing measures, allowing precise mathematical descriptions of complex structures.
+            </p>
+
+            <p>
+                Overall, Lebesgue–Stieltjes integration plays a vital role in modern probability and measure theory, offering a powerful and flexible approach to mathematical modeling and analysis.
+            </p>
+
         </section>
 
         <!-- Right Sidebar (empty for now) -->
